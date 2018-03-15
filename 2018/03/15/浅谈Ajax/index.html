@@ -6,16 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://Reaper622.github.io">
-  <title>My first blog | 李博文的博客</title>
+  <title>李博文的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="My first blog">
-<meta property="og:url" content="https://Reaper622.github.io/2018/03/14/My-first-blog/index.html">
+  <meta name="description" content="AjaxAjax了解全称：Asynchronous JavaScript and XML （异步的JavaScript和XML) 同步（效率低）： 异步（）  XMLHttpRequest 对象出现之后才开始用异步操作，可用于后台与服务器交换数据（不刷新网页，只局部刷新）  运用HTML和CSS来实现页面，表达信息; 运用XMLHttpRequest 和web服务器进行数据的异步交换; 运用Jav">
+<meta property="og:type" content="article">
+<meta property="og:title" content="李博文的博客">
+<meta property="og:url" content="https://Reaper622.github.io/2018/03/15/浅谈Ajax/index.html">
 <meta property="og:site_name" content="李博文的博客">
+<meta property="og:description" content="AjaxAjax了解全称：Asynchronous JavaScript and XML （异步的JavaScript和XML) 同步（效率低）： 异步（）  XMLHttpRequest 对象出现之后才开始用异步操作，可用于后台与服务器交换数据（不刷新网页，只局部刷新）  运用HTML和CSS来实现页面，表达信息; 运用XMLHttpRequest 和web服务器进行数据的异步交换; 运用Jav">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-14T15:32:44.282Z">
+<meta property="og:image" content="https://s1.ax1x.com/2018/03/15/94s9Fe.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/03/15/946Qrq.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/03/15/94xrv9.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/03/15/94xO58.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/03/15/94xjPS.jpg">
+<meta property="og:updated_time" content="2018-03-15T12:42:03.908Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="My first blog">
+<meta name="twitter:title" content="李博文的博客">
+<meta name="twitter:description" content="AjaxAjax了解全称：Asynchronous JavaScript and XML （异步的JavaScript和XML) 同步（效率低）： 异步（）  XMLHttpRequest 对象出现之后才开始用异步操作，可用于后台与服务器交换数据（不刷新网页，只局部刷新）  运用HTML和CSS来实现页面，表达信息; 运用XMLHttpRequest 和web服务器进行数据的异步交换; 运用Jav">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/03/15/94s9Fe.jpg">
   
     <link rel="alternative" href="/atom.xml" title="李博文的博客" type="application/atom+xml">
   
@@ -155,27 +164,123 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-My-first-blog" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-浅谈Ajax" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      My first blog
-    </h1>
-  
-
-        
-        <a href="/2018/03/14/My-first-blog/" class="archive-article-date">
-  	<time datetime="2018-03-14T15:32:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-14</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h1><h2 id="Ajax了解"><a href="#Ajax了解" class="headerlink" title="Ajax了解"></a>Ajax了解</h2><p>全称：Asynchronous JavaScript and XML</p>
+<p>（异步的JavaScript和XML)</p>
+<p>同步（效率低）：<a href="https://imgchr.com/i/94s9Fe" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/03/15/94s9Fe.jpg" alt="94s9Fe.jpg"></a></p>
+<p>异步（） <a href="https://imgchr.com/i/946Qrq" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/03/15/946Qrq.jpg" alt="946Qrq.jpg"></a></p>
+<p><em>XMLHttpRequest</em> 对象出现之后才开始用异步操作，可用于后台与服务器交换数据（不刷新网页，只局部刷新）</p>
+<ul>
+<li>运用HTML和CSS来实现页面，表达信息;</li>
+<li>运用XMLHttpRequest 和web服务器进行数据的异步交换;</li>
+<li>运用JavaScript操作DOM,实现动态局部刷新;</li>
+</ul>
+<p>建立一个XMLHttpRequest对象的代码为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var request;</span><br><span class="line">if(window.XMLHttpRequest)&#123;</span><br><span class="line">    request = new XMLHttpRequest(); //适用于IE 7+ Firefox, Chrome, Opera</span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">    request = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;); //兼容IE6,IE5</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>不过，目前一般浏览器已经升级，普遍可以忽略ActiveXObject方法。</p>
+<hr>
+<h2 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h2><p>（计算机通过网络进行通信的规则）</p>
+<p>一个完整的HTTP请求过程，通常有下面七个步骤：</p>
+<ol>
+<li>建立TCP连接</li>
+<li>Web浏览器向Web服务器发送请求命令</li>
+<li>Web浏览器发送请求头信息</li>
+<li>Web服务器应答</li>
+<li>Web服务器发送应答头信息</li>
+<li>Web服务器向浏览器发送数据</li>
+<li>Web服务器关闭</li>
+</ol>
+<h3 id="一个HTTP请求由四部分组成"><a href="#一个HTTP请求由四部分组成" class="headerlink" title="一个HTTP请求由四部分组成"></a>一个HTTP请求由四部分组成</h3><ol>
+<li>HTTP请求的方法或者动作，例如GET或者POST请求</li>
+<li>正在请求的URL</li>
+<li>请求头，包含一些客户端环境信息，身份验证信息</li>
+<li>请求体，也就是请求正文，包含一些客户提交的查询字符串信息，表单信息等（<em>请求体与请求头之间有空行</em>）</li>
+</ol>
+<h4 id="GET"><a href="#GET" class="headerlink" title="GET:"></a>GET:</h4><ul>
+<li>一般用于信息获取</li>
+<li>使用URL传递参数</li>
+<li>对所发送的信息的数量有限制，一般在200个字符</li>
+</ul>
+<h4 id="POST"><a href="#POST" class="headerlink" title="POST:"></a>POST:</h4><ul>
+<li>一般用于修改服务器上的资源</li>
+<li>对所发送的信息的数量无限制</li>
+</ul>
+<h6 id="这里解释一下GET的“幂等”：一个GET请求发送一次或者一万次的结果都相同。"><a href="#这里解释一下GET的“幂等”：一个GET请求发送一次或者一万次的结果都相同。" class="headerlink" title="==这里解释一下GET的“幂等”：一个GET请求发送一次或者一万次的结果都相同。=="></a>==这里解释一下GET的“幂等”：一个GET请求发送一次或者一万次的结果都相同。==</h6><p>一个HTTP相应一般由三部分组成：</p>
+<ol>
+<li>一个<strong>数字</strong>和<strong>文字</strong>组成的状态码，用来显示请求是成功还是失败。</li>
+<li><strong>响应头</strong>，响应头也和请求头一样包含许多有用的信息，例如服务器类型，日期时间，内容类型和长度等。</li>
+<li><strong>响应体</strong>，也就是响应正文。</li>
+</ol>
+<h5 id="状态码："><a href="#状态码：" class="headerlink" title="状态码："></a>状态码：</h5><h6 id="HTTP状态码由三位数字构成，其中-首位数字-定义了状态码的类型："><a href="#HTTP状态码由三位数字构成，其中-首位数字-定义了状态码的类型：" class="headerlink" title="HTTP状态码由三位数字构成，其中++首位数字++定义了状态码的类型："></a>HTTP状态码由三位数字构成，其中++首位数字++定义了状态码的类型：</h6><ul>
+<li>1XX : 信息类，表示收到Web浏览器请求，正在进一步的处理中</li>
+<li>2XX : 成功，表示用户请求被正确接收，客户必须采取进一步的动作</li>
+<li>3XX : 重定向，表示请求没有成功，客户必须采取进一步的动作</li>
+<li>4XX : 表示客户端提交的请求有错误，例如：404 NOT FOUND，意味着请求中所引用的文档不存在。</li>
+<li>5XX : 服务器错误，表示服务器不能完成对请求的处理 ： 如 500</li>
+</ul>
+<hr>
+<h2 id="XMLHttpRequest发送请求"><a href="#XMLHttpRequest发送请求" class="headerlink" title="XMLHttpRequest发送请求"></a>XMLHttpRequest发送请求</h2><p>open(method,url,async)</p>
+<p>send(string)</p>
+<p>代码例子如下所示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">request.open(&quot;GET&quot;,&quot;get.php&quot;,true);</span><br><span class="line">request.send();</span><br><span class="line"></span><br><span class="line">request.open(&quot;POST&quot;,&quot;post.php&quot;,true);</span><br><span class="line">request.send();</span><br><span class="line"></span><br><span class="line">request.open(&quot;POST&quot;,&quot;create.php&quot;,true);</span><br><span class="line">request.setRequestHeader(&quot;Content-type&quot;,&quot;application/x-www-form-unlencoded&quot;);</span><br><span class="line">request.send(&quot;name=张三&amp;sex=男&quot;);</span><br></pre></td></tr></table></figure>
+<h2 id="XMLHttpRequest取得响应"><a href="#XMLHttpRequest取得响应" class="headerlink" title="XMLHttpRequest取得响应"></a>XMLHttpRequest取得响应</h2><ul>
+<li>responseText : 获取字符串形式的响应数据</li>
+<li>responseXML : 获取XML形式的响应数据</li>
+<li>status和statusText : 以数字和文本形式返回HTTP状态码</li>
+<li>getAllResponseHeader(): 获取所有的响应报头</li>
+<li>getResponseHeader（）： 查询响应中的某个字段的值</li>
+</ul>
+<h4 id="readyState属性"><a href="#readyState属性" class="headerlink" title="readyState属性"></a>readyState属性</h4><h5 id="代表服务器响应变化"><a href="#代表服务器响应变化" class="headerlink" title="代表服务器响应变化"></a>代表服务器响应变化</h5><p>0: 请求未初始化，open还没有调用<br>1: 服务器连接已经建立，open已经调用<br>2: 请求已经接受(接收到头信息)<br>3: 请求处理中(接收到响应主体)<br>4: 请求已经完成，且响应已经就绪，响应已完成 </p>
+<h4 id="监听"><a href="#监听" class="headerlink" title="监听"></a>监听</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">request.send();</span><br><span class="line">request.onreadystatechange = function()&#123;</span><br><span class="line">    if(request.readyState ===4&amp;&amp;request.status === 200)&#123;</span><br><span class="line">        request.responseText //做一些事情</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h2><h3 id="PHP是一种创建动态交互性站点的服务器端脚本语言"><a href="#PHP是一种创建动态交互性站点的服务器端脚本语言" class="headerlink" title="PHP是一种创建动态交互性站点的服务器端脚本语言"></a>PHP是一种创建动态交互性站点的服务器端脚本语言</h3><h3 id="PHP能够生成动态页面内容"><a href="#PHP能够生成动态页面内容" class="headerlink" title="PHP能够生成动态页面内容"></a>PHP能够生成动态页面内容</h3><h3 id="PHP能够创建、打开、读取、写入、删除以及关闭服务器上的文件"><a href="#PHP能够创建、打开、读取、写入、删除以及关闭服务器上的文件" class="headerlink" title="PHP能够创建、打开、读取、写入、删除以及关闭服务器上的文件"></a>PHP能够创建、打开、读取、写入、删除以及关闭服务器上的文件</h3><h3 id="PHP能够接受表单数据"><a href="#PHP能够接受表单数据" class="headerlink" title="PHP能够接受表单数据"></a>PHP能够接受表单数据</h3><h3 id="PHP能够发送并取回cookies"><a href="#PHP能够发送并取回cookies" class="headerlink" title="PHP能够发送并取回cookies"></a>PHP能够发送并取回cookies</h3><h3 id="PHP能够添加、删除、修改数据库中的数据"><a href="#PHP能够添加、删除、修改数据库中的数据" class="headerlink" title="PHP能够添加、删除、修改数据库中的数据"></a>PHP能够添加、删除、修改数据库中的数据</h3><h3 id="PHP能够限制用户访问网站中的某些页面"><a href="#PHP能够限制用户访问网站中的某些页面" class="headerlink" title="PHP能够限制用户访问网站中的某些页面"></a>PHP能够限制用户访问网站中的某些页面</h3><h4 id="PHP作为“最好的语言”还有一点是因为它兼容所有web服务器和数据库"><a href="#PHP作为“最好的语言”还有一点是因为它兼容所有web服务器和数据库" class="headerlink" title="PHP作为“最好的语言”还有一点是因为它兼容所有web服务器和数据库"></a>PHP作为“最好的语言”还有一点是因为<em>它兼容所有web服务器和数据库</em></h4><p>由于对PHP并未有深入的学习，下面只列举一些基础</p>
+<ul>
+<li>PHP脚本以 &lt;?php 开头，以 ?&gt; 结尾</li>
+<li>PHP文件的默认扩展名是.php</li>
+<li>PHP语言以分号结尾(;)</li>
+</ul>
+<h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><h3 id="JSON基本概念"><a href="#JSON基本概念" class="headerlink" title="JSON基本概念"></a>JSON基本概念</h3><ul>
+<li>JSON:JavaScript 对象表示法（JavaScript Object Notation）</li>
+<li>JSON 是存储和交换文本信息的语法，类似XML。它采用键值的方式来组织，易于人们阅读和编写，同时也易于机器解析和生成</li>
+<li>JSON是独立于语言的，也就是不管什么语言，都可以解析JSON，只需要按照json的规则来就行</li>
+</ul>
+<h4 id="JSON的优点"><a href="#JSON的优点" class="headerlink" title="JSON的优点"></a>JSON的优点</h4><ul>
+<li>JSON的长度比XML格式比起来短小</li>
+<li>JSON的读写速度非常快</li>
+<li>JSON可以使用JavaScript内建的方法进行直接解析，转换成JavaScript对象，非常方便</li>
+</ul>
+<h4 id="JSON语法规则"><a href="#JSON语法规则" class="headerlink" title="JSON语法规则"></a>JSON语法规则</h4><h5 id="·-JSON-数据的书写格式是：名称-值对"><a href="#·-JSON-数据的书写格式是：名称-值对" class="headerlink" title="· JSON 数据的书写格式是：名称/值对"></a>· JSON 数据的书写格式是：名称/值对</h5><p>名称/值对组合中的名称写在前面(在双引号中),值对写在后面(同样在双引号中),中间用冒号隔开：比如”==name”:”李狗蛋”==</p>
+<h5 id="·-json-的值可以使下面这些类型"><a href="#·-json-的值可以使下面这些类型" class="headerlink" title="· json 的值可以使下面这些类型:"></a>· json 的值可以使下面这些类型:</h5><ul>
+<li>数字（整数或浮点数），比如123,1.23</li>
+<li>字符串（在双引号中）</li>
+<li>逻辑值（true/false）</li>
+<li>数组（在方括号中）</li>
+<li>对象（在花括号中）</li>
+<li>null</li>
+</ul>
+<h4 id="JSON语法规则示例"><a href="#JSON语法规则示例" class="headerlink" title="JSON语法规则示例"></a>JSON语法规则示例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;staff&quot;:[</span><br><span class="line">                &#123;&quot;name&quot;:&quot;小明&quot;,&quot;age&quot;:&quot;18&quot;&#125;,</span><br><span class="line">                &#123;&quot;name&quot;:&quot;小红&quot;,&quot;age&quot;:&quot;17&quot;&#125;</span><br><span class="line">            ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="JS中解析json有两种格式"><a href="#JS中解析json有两种格式" class="headerlink" title="JS中解析json有两种格式"></a>JS中解析json有两种格式</h4><ul>
+<li>eval和JSON.parse</li>
+<li>在代码中使用eval是很<strong>危险</strong>的！！！！特别是用它执行第三方的JSON数据（其中可能包含恶意代码）时，尽可能使用JSON.parse()方法解析字符串本身，该方法还可以捕捉JSON中的语法错误。</li>
+</ul>
+<h5 id="eval-方式不止解析json字符串，还执行json字符串中的方法（有风险）"><a href="#eval-方式不止解析json字符串，还执行json字符串中的方法（有风险）" class="headerlink" title="eval()方式不止解析json字符串，还执行json字符串中的方法（有风险）"></a>eval()方式不止解析json字符串，还执行json字符串中的方法（有风险）</h5><h5 id="JSON-parse-不会执行方法，还会报错，安全方便为什么不用呢！！"><a href="#JSON-parse-不会执行方法，还会报错，安全方便为什么不用呢！！" class="headerlink" title="JSON.parse()不会执行方法，还会报错，安全方便为什么不用呢！！"></a>JSON.parse()不会执行方法，还会报错，安全方便为什么不用呢！！</h5><h5 id="在这里分享一个JSON在线校验工具：-jsonlint-com"><a href="#在这里分享一个JSON在线校验工具：-jsonlint-com" class="headerlink" title="在这里分享一个JSON在线校验工具：  jsonlint.com"></a>在这里分享一个JSON在线校验工具：  <a href="jsonlint.com">jsonlint.com</a></h5><h3 id="JSON格式约定："><a href="#JSON格式约定：" class="headerlink" title="JSON格式约定："></a>JSON格式约定：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;success&quot;:&quot;ture&quot;, //请求是否成功</span><br><span class="line">    &quot;errormessage&quot;:&quot;XXX&quot;, //请求失败返回的错误信息</span><br><span class="line">    &quot;data&quot;:&quot;XXXXXX&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="jQuery"><a href="#jQuery" class="headerlink" title="jQuery"></a>jQuery</h2><p>jQuery.ajax([settings])</p>
+<ul>
+<li>type : 类型，”POST”或 “GET”,默认为 “GET”</li>
+<li>url : 发送请求的地址</li>
+<li>data : 是一个对象，连同请求发送到服务器的数据</li>
+<li>dataType : 预期服务器返回的数据类型。如果不指定，jQuery将自动根据HTTP包MINE信息来智能判断，一般我们采用json格式，可以设置为 “json”</li>
+<li>success : 是一个方法，请求成功后的回调函数。传入返回后的数据，以及包含成功代码的字符串</li>
+<li>error : 是一个方法，请求失败时调用此函数。传入XMLHttpRequest对象</li>
+</ul>
+<h5 id="在这里分享一个jQuery在线资源库（百度在线资源库，免费且速度贼快！）https-apps-bdimg-com-libs-jquery-1-11-1-jquery-js"><a href="#在这里分享一个jQuery在线资源库（百度在线资源库，免费且速度贼快！）https-apps-bdimg-com-libs-jquery-1-11-1-jquery-js" class="headerlink" title="在这里分享一个jQuery在线资源库（百度在线资源库，免费且速度贼快！）https://apps.bdimg.com/libs/jquery/1.11.1/jquery.js"></a>在这里分享一个jQuery在线资源库（百度在线资源库，免费且速度贼快！）<a href="https://apps.bdimg.com/libs/jquery/1.11.1/jquery.js" target="_blank" rel="noopener">https://apps.bdimg.com/libs/jquery/1.11.1/jquery.js</a></h5><h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><h3 id="有关跨域"><a href="#有关跨域" class="headerlink" title="有关跨域"></a>有关跨域</h3><p><a href="https://imgchr.com/i/94xrv9" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/03/15/94xrv9.jpg" alt="94xrv9.jpg"></a><br>跨域需要访问权限</p>
+<p>JavaScript出于安全考虑，不允许跨域调用。</p>
+<h4 id="跨域解决方法之一-代理"><a href="#跨域解决方法之一-代理" class="headerlink" title="跨域解决方法之一 :  代理"></a>跨域解决方法之一 :  <strong>代理</strong></h4><p><a href="https://imgchr.com/i/94xO58" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/03/15/94xO58.jpg" alt="94xO58.jpg"></a></p>
+<h4 id="跨域解决方法之二-XHR2"><a href="#跨域解决方法之二-XHR2" class="headerlink" title="跨域解决方法之二 : XHR2"></a>跨域解决方法之二 : XHR2</h4><p><a href="https://imgchr.com/i/94xjPS" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/03/15/94xjPS.jpg" alt="94xjPS.jpg"></a></p>
+<h2 id="不清楚什么时候使用AJAX-什么时候使用Ajax？"><a href="#不清楚什么时候使用AJAX-什么时候使用Ajax？" class="headerlink" title="不清楚什么时候使用AJAX? 什么时候使用Ajax？"></a>不清楚什么时候使用AJAX? <a href="http://blog.csdn.net/gebi_msdn/article/details/1682210" target="_blank" rel="noopener">什么时候使用Ajax？</a></h2>
       
 
       
@@ -254,7 +359,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://Reaper622.github.io/2018/03/14/My-first-blog/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://Reaper622.github.io/2018/03/15/浅谈Ajax/" alt="微信分享二维码">
     </div>
 </div>
 
