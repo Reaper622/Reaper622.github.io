@@ -43,7 +43,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="img/curry.JPG" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">李 博文</a></h1>
@@ -155,6 +155,229 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-jQuery基础-样式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="jQuery样式篇"><a href="#jQuery样式篇" class="headerlink" title="jQuery样式篇"></a>jQuery样式篇</h1><h2 id="初识jQuery"><a href="#初识jQuery" class="headerlink" title="初识jQuery"></a>初识jQuery</h2><p>首先先告诉你们：jQuery对象与DOM对象是不一样的</p>
+<p>下面通过一个例子来讲解：</p>
+<p>我们要获取一个页面上这个id为imooc的p元素，然后给这个文本节点增加一段文字：“学习jQuery！”，并且让文字颜色变成红色。</p>
+<p>普通的JavaScript处理方法为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var p =document.getElementById(&apos;imooc&apos;);// 通过原生JS语法获取id为imooc1的元素p</span><br><span class="line">p.innerHTML=&apos;学习jQuery！&apos;// 将元素p在html中内容改变</span><br><span class="line">p.style.color=&apos;red&apos;; // 将元素p的内容颜色改为红色</span><br></pre></td></tr></table></figure>
+<p>jQuery的处理：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var $p = $(&apos;#imooc&apos;);</span><br><span class="line">$p.html(&apos;学习jQuery！&apos;).css(&apos;color&apos;,&apos;red&apos;);//</span><br><span class="line">*通过jQuery语法获取id为imooc2的元素获得一个jQuery对象 </span><br><span class="line">*调用该对象的html()方法进行更改内容</span><br><span class="line">*调用该对象的css()方法进行更改颜色样式</span><br></pre></td></tr></table></figure>
+<p>由于jQuery库本质上还是JavaScript代码，所以在很多情况下我们需要jQuery与DOM能够相互转换，他们都是可以操作的DOM元素，jQuery是一个类数组对象，而DOM对象就是一个单独的DOM元素。</p>
+<h4 id="利用数组下标的方式读取到jQuery中的DOM对"><a href="#利用数组下标的方式读取到jQuery中的DOM对" class="headerlink" title="利用数组下标的方式读取到jQuery中的DOM对"></a>利用数组下标的方式读取到jQuery中的DOM对</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">html代码:</span><br><span class="line">&lt;div&gt;元素一&lt;/div&gt;</span><br><span class="line">&lt;div&gt;元素二&lt;/div&gt;</span><br><span class="line">&lt;div&gt;元素三&lt;/div&gt;</span><br><span class="line">JavaScript:</span><br><span class="line">var $div=$(&apos;div&apos;);//jQuery对象</span><br><span class="line">var div = $div[0];//转化成DOM对象</span><br><span class="line">div.style.color = &apos;red&apos;;//操作dom对象的属性</span><br></pre></td></tr></table></figure>
+<h4 id="通过jQuery自带的get-方法："><a href="#通过jQuery自带的get-方法：" class="headerlink" title="通过jQuery自带的get()方法："></a>通过jQuery自带的get()方法：</h4><p>jQuery对象自身提供一个.get()方法允许我们直接访问jQuery对象中相关的DOM节点，get方法中提供一个元素的索引：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var $div = $(&apos;div&apos;);//jQuery对象</span><br><span class="line">var div = $div.get(0);//通过get方法，转化成DOM对象</span><br><span class="line">div.style.color = &apos;red&apos;;//操作dom对象的属性</span><br></pre></td></tr></table></figure></p>
+<h4 id="将DOM对象转换成jQuery对象"><a href="#将DOM对象转换成jQuery对象" class="headerlink" title="将DOM对象转换成jQuery对象"></a>将DOM对象转换成jQuery对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var div = document.getElementsByTagName(&quot;div&quot;); //dom对象</span><br><span class="line">var $div = $(div); //jQuery对象</span><br><span class="line">var $first = $div.first(); //找到第一个div元素</span><br><span class="line">$first.css(&quot;color&quot;, &quot;red&quot;); //给第一个元素设置颜色</span><br></pre></td></tr></table></figure>
+<h2 id="jQuery选择器"><a href="#jQuery选择器" class="headerlink" title="jQuery选择器"></a>jQuery选择器</h2><h5 id="jQuery几乎支持主流的css1-css3选择器的写法"><a href="#jQuery几乎支持主流的css1-css3选择器的写法" class="headerlink" title="jQuery几乎支持主流的css1~css3选择器的写法"></a>jQuery几乎支持主流的css1~css3选择器的写法</h5><h3 id="id选择器："><a href="#id选择器：" class="headerlink" title="id选择器："></a>id选择器：</h3><p>在JavaScript中，我们用 <em>document.getElementById()</em> 来处理ID获取</p>
+<p>在jQuery中则为 <em>$(“#id”)</em></p>
+<h3 id="类选择器"><a href="#类选择器" class="headerlink" title="类选择器"></a>类选择器</h3><p>类选择器相对于id选择器效率略低，但它可以多选。</p>
+<p>对于改变多个class为lbw的div</p>
+<p>如果我们用原生js写的话：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var divs = document.getElementsByClassName(&quot;lbw&quot;);</span><br><span class="line">for(var i = 0; i &lt; divs.length; i++)&#123;</span><br><span class="line">    divs[i].style.border = &quot;1px solid blue&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>但如果我们使用jQuery<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;.lbw&quot;).css(&quot;border&quot;,&quot;1px solid blue&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>可见，使用jQuery不仅选择简单，而且不需要循环，增加很多相关联的便利操作。</p>
+<h3 id="元素选择器"><a href="#元素选择器" class="headerlink" title="元素选择器"></a>元素选择器</h3><p>jQuery方法：$(“element”)</p>
+<p>原生js: var XXX = document.getElementsByTagName(“element”);</p>
+<h3 id="全选择器"><a href="#全选择器" class="headerlink" title="全选择器"></a>全选择器</h3><p>在CSS中我们有时会写出这样的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* &#123;padding: 0; margin: 0;&#125;</span><br></pre></td></tr></table></figure></p>
+<p><em>（通配符）意味着给所有元素设置css格式<br>在jQuery中的使用方法为：$(“</em>“)<br>原生js:document.getElementsByTagName(“*”);</p>
+<h3 id="层级选择器"><a href="#层级选择器" class="headerlink" title="层级选择器"></a>层级选择器</h3><p>先通过列表了解层级选择器的区别：<a href="https://imgchr.com/i/9IYcB4" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/03/17/9IYcB4.png" alt="9IYcB4.png"></a><br>注意一下层级选择器之间的相似与不同点：</p>
+<ol>
+<li>层级选择器都有一个参考节点</li>
+<li>后代选择器包含子选择器的选择的内容</li>
+<li>一般兄弟选择器包含相邻兄弟选择的内容</li>
+<li>相邻兄弟选择器和一般兄弟选择器所选择的的元素，必须在同一父元素下</li>
+</ol>
+<h3 id="基本筛选选择器"><a href="#基本筛选选择器" class="headerlink" title="基本筛选选择器"></a>基本筛选选择器</h3><p>很多时候我们不能直接通过基本选择器与层级选择器找到我们想要的元素，为此jQuery提供了一系列的筛选选择器用来更快捷的找到所需的DOM元素。筛选选择器很多都不是CSS的规范，而是jQuery自己为了开发者的便利延展出来的选择器</p>
+<p>筛选选择器的用法与CSS中的伪元素相似，选择器用冒号“：”开头，通过一个列表，看看基本筛选器的描述：<a href="https://imgchr.com/i/9ItFEj" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/03/17/9ItFEj.png" alt="9ItFEj.png"></a></p>
+<h5 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h5><ol>
+<li>:eq(), :lt(), :gt(), :even, :odd 用来筛选他们前面的匹配表达式的集合元素，根据之前匹配的元素在进一步筛选，注意jQuery合集都是从0开始索引</li>
+<li>gt是一个段落筛选，从指定索引的下一个开始，gt(1) 实际从2开始</li>
+</ol>
+<h3 id="内容筛选选择器"><a href="#内容筛选选择器" class="headerlink" title="内容筛选选择器"></a>内容筛选选择器</h3><p>基本筛选选择器针对的都是元素DOM节点，如果我们要通过内容来过滤，jQuery也提供了一组内容筛选选择器，当然其规则也会体现在它所包含的子元素或者文本内容上</p>
+<p>内容过滤器描述如下表：<a href="https://imgchr.com/i/9ItjZ4" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/03/17/9ItjZ4.png" alt="9ItjZ4.png"></a></p>
+<h5 id="注意：-1"><a href="#注意：-1" class="headerlink" title="注意："></a>注意：</h5><ol>
+<li>contains与:has都有查找的意思，但是contains查找包含“指定文本”的元素，has查找包含“指定元素”的元素</li>
+<li>如果:contains匹配的文本包含在元素的子元素中，同样认为是符合条件的。</li>
+<li>parent与:empty是相反的，两者所涉及的子元素，包括文本节点</li>
+</ol>
+<h3 id="可见性选择器"><a href="#可见性选择器" class="headerlink" title="可见性选择器"></a>可见性选择器</h3><p>元素有显示状态与隐藏状态，jQuery根据元素的状态扩展了可见性筛选选择器:visible与:hidden</p>
+<p><a href="https://imgchr.com/i/9INJoj" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/03/17/9INJoj.png" alt="9INJoj.png"></a><br>其中，:hidden选择器，不仅仅包含样式是display=”none”的元素，还包括隐藏表单、visibility等等</p>
+<p><strong>如果元素中占据文档中一定的空间,元素被认为是可见的。<br>可见元素的宽度或高度，是大于零。<br>元素的visibility: hidden 或 opacity: 0被认为是可见的，因为他们仍然占用空间布局。</strong></p>
+<h3 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h3><p>属性选择器让你可以基于属性来定位一个元素。可以只指定该元素的某个属性，这样所有使用该属性而不管它的值，这个元素都将被定位，也可以更加明确并定位在这些属性上使用特定值的元素，这就是属性选择器展示它们的威力的地方。<br><img src="http://img.mukewang.com/57d654200001c46507360560.jpg" alt="image"></p>
+<p>在这么多属性选择器中[attr=”value”]和[attr*=”value”]是最实用的</p>
+<p>attr=”value”]能帮我们定位不同类型的元素，特别是表单form元素的操作，比如说：<br>input[type=”text”],input[type=”checkbox”]等<br>[attr*=”value”]能在网站中帮助我们匹配不同类型的文件</p>
+<h3 id="子元素筛选选择器"><a href="#子元素筛选选择器" class="headerlink" title="子元素筛选选择器"></a>子元素筛选选择器</h3><p>子元素筛选我们不常用，下面只给大家列出描述表：<br><img src="http://img.mukewang.com/559105da0001301105960331.jpg" alt="image"></p>
+<h3 id="单元素选择器"><a href="#单元素选择器" class="headerlink" title="单元素选择器"></a>单元素选择器</h3><p>无论是提交还是传递数据，表单元素在动态交互页面的作用是非常重要的。jQuery中专门加入了表单选择器，从而能够极其方便地获取到某个类型的表单元素</p>
+<p>具体方法描述：<br><img src="http://img.mukewang.com/5592040d0001f8eb04940441.jpg" alt="image"></p>
+<h3 id="表单对象属性筛选选择器"><a href="#表单对象属性筛选选择器" class="headerlink" title="表单对象属性筛选选择器"></a>表单对象属性筛选选择器</h3><p>除了表单元素选择器外，表单对象属性筛选选择器也是专门针对表单元素的选择器，可以附加在其他选择器的后面，主要功能是对所选择的表单元素进行筛选<br><img src="http://img.mukewang.com/55920c2f0001198b04940201.jpg" alt="image"></p>
+<p>注意事项：</p>
+<ol>
+<li>选择器适用于复选框和单选框，对于下拉框元素, 使用 :selected 选择器</li>
+<li>在某些浏览器中，选择器:checked可能会错误选取到<option>元素，所以保险起见换用选择器input:checked，确保只会选取</option><input>元素</li>
+</ol>
+<h3 id="特殊选择器this"><a href="#特殊选择器this" class="headerlink" title="特殊选择器this"></a>特殊选择器this</h3><p> 在原生js中：this，表示当前的上下文对象是一个html对象，可以调用html对象所拥有的属性和方法。</p>
+<p>在jQuery中：$(this),代表的上下文对象是一个jquery的上下文对象，可以调用jQuery的方法和属性值。</p>
+<h2 id="jQuery的属性与样式"><a href="#jQuery的属性与样式" class="headerlink" title="jQuery的属性与样式"></a>jQuery的属性与样式</h2><h3 id="attr-与-removeAttr"><a href="#attr-与-removeAttr" class="headerlink" title=".attr()与.removeAttr()"></a>.attr()与.removeAttr()</h3><p>每个元素都有一个或者多个特性，在这些特性的用途就是给出相应元素或者其内容的附加信息。如：在img元素中，src就是元素的特性，用来标记图片的地址。</p>
+<p>操作特性的DOM方法主要有三个，getAttribute方法，setAttribute方法和removeAttribute方法，就算如此在实际操作中还是会存在很多问题，而在jQuery中用一个attr()与removeAttr()就可以全部搞定了，包括兼容问题</p>
+<p>jQuery中用attr()方法来获取和设置元素属性，attr是attribute(属性)的缩写，在jQuery DOM操作中经常会用到attr()</p>
+<p>attr()有四个表达式</p>
+<ol>
+<li>attr(传入属性名): 获取属性的值</li>
+<li>attr(属性名，属性值): 设置属性的值</li>
+<li>attr(属性名，函数值): 设置属性的函数值</li>
+<li>attr(attributes): 给指定的元素设置多个属性值，即：{属性名一：”属性值一”，属性名二：”属性值二”，……}</li>
+</ol>
+<p>removeAttr()删除方法<br>.removeAttr(attributeName):为匹配的元素集合中的每个元素中移除一个属性(attribute)</p>
+<h5 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h5><p>attr、removeAttr都是jQuery为了属性操作封装的，直接在一个jQuery对象上调用该方法，很容易对属性进行操作，也不需要去特意的理解浏览器的属性名不同的问题</p>
+<h5 id="注意：-2"><a href="#注意：-2" class="headerlink" title="注意："></a>注意：</h5><p>dom元素中有个概念的区分：Attribute和Property翻译出来都是”属性”,《js高程》书中译为 <em>特性</em> 和 <em>属性</em> 。简单理解，Attribute就是dom节点中自带的属性</p>
+<p>例如 ：html中常用的id、class、title、align等</p>
+<p>而Property是这个DOM元素作为对象，算其附加的内容，例如:tagName，nodeName，nodeType，defaultChecked，defaultSelected 使用.prop()方法进行取值或者赋值</p>
+<p><strong>获取Attribute就需要用attr，获取Property就需要用prop</strong></p>
+<h3 id="html-以及-text"><a href="#html-以及-text" class="headerlink" title="html()以及.text()"></a>html()以及.text()</h3><p>读取、修改元素的html结构或者元素的文本内容是常见的DOM操作，jQuery针对这样的处理提供了2个便捷方法</p>
+<h5 id="html-方法"><a href="#html-方法" class="headerlink" title=".html()方法"></a>.html()方法</h5><p>获取集合中第一个匹配元素的HTML内容或设置每一个匹配元素的html内容，具体有三种用法:</p>
+<ol>
+<li>.html() 不传入值，就是获取集合中第一个匹配的元素的HTML内容</li>
+<li>.html(htmlString)设置每一个匹配元素的html内容</li>
+<li>html(function(index,oldhtml))用来返回设置HTML内容的一个函数<h6 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h6></li>
+</ol>
+<p>.html()方法内部使用的是DOM的innerHTML属性来处理的，所以在设置与获取上需要注意的一个最重要的问题，这个操作是针对整个HTML内容(不仅仅只是文本内容)</p>
+<h5 id="text-方法"><a href="#text-方法" class="headerlink" title=".text()方法"></a>.text()方法</h5><p>得到匹配元素集合中每个元素的文本内容结合，包括他们的后代，或者设置配置元素集合中每个元素的文本内容为制定的文本内容。具体有三种用法：</p>
+<ol>
+<li>text()得到匹配元素集合中每个元素的合并文本，包括他们的后代</li>
+<li>.text(textString)用于设置配置元素内容的文本</li>
+<li>.text(function(index,text))用来返回设置文本内容的一个函数</li>
+</ol>
+<h6 id="注意：-3"><a href="#注意：-3" class="headerlink" title="注意："></a>注意：</h6><p>.text()结果返回一个字符串，包含所有匹配元素的 <em>合并文本</em></p>
+<h5 id="两者的异同"><a href="#两者的异同" class="headerlink" title="两者的异同:"></a>两者的异同:</h5><ol>
+<li>.html与.text的方法操作是一样的，只是在具体针对处理对象的不同</li>
+<li>.html处理的是元素内容，.text处理的是文本内容</li>
+<li>.html只能使用在html文档中，.text在XML和HTML文档中都能使用</li>
+<li>如果处理的对象只有一个子文本节点，那么html处理的结果与text是一样的</li>
+<li>火狐不支持innerText属性，用类似textContent属性，.text()方法综合了2个属性的支持，所以可以兼容所有浏览器</li>
+</ol>
+<h3 id="val"><a href="#val" class="headerlink" title=".val()"></a>.val()</h3><p>jQuery中有一个.val()方法主要是用于处理表单元素的值，比如input，select和textarea</p>
+<h5 id="val-方法"><a href="#val-方法" class="headerlink" title=".val()方法"></a>.val()方法</h5><ol>
+<li>.val()无参数，获取匹配的元素集合中第一个元素的当前值</li>
+<li>.val(value)，设置匹配的元素集合中的每个元素的值</li>
+<li>.val(function),一个用来返回设置值的函数</li>
+</ol>
+<h6 id="注意：-4"><a href="#注意：-4" class="headerlink" title="注意："></a>注意：</h6><p>1.通过.val()处理select元素，当没有选择项被选中，它返回null</p>
+<ol>
+<li>.val()方法多用来设置表单的字段的值</li>
+<li>如果select元素有multiple(多选)属性，并且至少一个选项被选中，.val()方法返回一个数组，这个数组包含每个选中选择项的值</li>
+</ol>
+<h4 id="html-text-与-val的差异总结："><a href="#html-text-与-val的差异总结：" class="headerlink" title=".html(),.text()与.val的差异总结："></a>.html(),.text()与.val的差异总结：</h4><ol>
+<li>.html(),.text(),.val()三种方法都是用来读取选定元素的内容；不过！.html()是用来读取元素的html内容(包含html标签)，.text()是用来读取元素的纯文本内容，包括其后代元素，.val()是用来读取表单元素的”value”值。其中.html()和.text()方法 ++不能++ 使用在表单元素上，而.val() ++只能++ 使用在表单元素上；另外， .html()方法使用在多个元素上时，只读取第一个元素；.val()方法和.html()相同，如果其他应用在多个元素上时，只能读取第一个表单元素的 “value”值， <strong>但是.text()和他们不一样</strong> ，如果.text()应用在多个元素上时，将会读取所有选中元素的文本内容。</li>
+<li>.html(htmlString),.text(textString)和.val(value)三种方法都是用来替换选中元素的内容，如果三个方法同时运用在多个元素上时，那么将会替换所有选中元素的内容，如果三个方法同时运用在多个元素上时，那么将会替换所有选中元素的内容。</li>
+<li>.html(),.text(),.val()都可以使用回调函数的返回值来动态的改变多个元素的内容</li>
+</ol>
+<h3 id="增加样式-addClass"><a href="#增加样式-addClass" class="headerlink" title="增加样式.addClass()"></a>增加样式.addClass()</h3><p>通过动态改变类名(class),可以让其修改元素呈现出不同的效果，在HTML结构中里，多个class以空格分割，当一个节点(或称为一个标签)含有多个class时，DOM元素响应className属性获取的不是class名称的数组，而是一个含有空格的字符串，这就使得多class操作变得很麻烦。同样的jQuery开发者也考虑到这种情况，增加了一个.addClass()方法，用于动态增加class类名</p>
+<h4 id="addClass-className-方法"><a href="#addClass-className-方法" class="headerlink" title=".addClass(className)方法"></a>.addClass(className)方法</h4><ol>
+<li>.addClass(className):为每个匹配元素所要增加的一个或多个样式名</li>
+<li>.addClass(function(index,currentClass)):这个函数返回一个或更多用空格隔开的要增加的样式名</li>
+</ol>
+<h5 id="注意：-5"><a href="#注意：-5" class="headerlink" title="注意："></a>注意：</h5><p>.addClass()方法不会替换一个样式类名。它只是简单的添加一个样式类名到元素上</p>
+<p>简单的描述下：在p元素增加一个newClass的样式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;p class=&quot;orgClass&quot;&gt;</span><br><span class="line">$(&quot;p&quot;).addClass(&quot;newClass&quot;)</span><br></pre></td></tr></table></figure></p>
+<p>那么p元素的class实际上是 class=”orgClass newClass” 样式只会在原本的类上继续增加，通过空格分隔。</p>
+<h3 id="removeClass-方法"><a href="#removeClass-方法" class="headerlink" title=".removeClass()方法"></a>.removeClass()方法</h3><p>jQuery通过.addClass()方法可以很便捷的增加样式。如果需要样式之间的切换，同样jQuery提供了一个很方便的.removeClass()，它的作用是从匹配的元素中删除全部或者指定的class</p>
+<h4 id="removeClass-方法-1"><a href="#removeClass-方法-1" class="headerlink" title=".removeClass()方法"></a>.removeClass()方法</h4><ol>
+<li>.removeClass([className]):每个匹配元素移除的一个或多个用空格隔开的样式名</li>
+<li>.removeClass(function(index,class)):一个函数，返回一个或多个将要被移除的样式名</li>
+</ol>
+<h5 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h5><p>如果一个样式类名作为一个参数，只有这样式类会被从匹配的元素集合中删除，如果没有样式名作为参数，那么所有的样式类将被移除</p>
+<h3 id="切换样式-toggleClass"><a href="#切换样式-toggleClass" class="headerlink" title="切换样式 .toggleClass"></a>切换样式 .toggleClass</h3><p>在做某些效果的时候，可能会针对同一节点的某一个样式不断地切换，也就是addClass与removeClass的互斥切换，比如隔行换色效果</p>
+<p>jQuery提供一个toggleClass方法用于简化这种互斥的逻辑，通过toggleClass方法动态添加删除Class，一次执行相当于addClass，再次执行相当于removeClass</p>
+<p>.toggleClass()方法：在匹配的元素集合中的每个元素上添加或删除一个或多个样式类，取决于这个样式类是否存在或值切换属性。即：如果存在(不存在)就删除(添加)一个类</p>
+<ol>
+<li>.toggleClass(className):在匹配的元素集合中的每个元素上用来切换的一个或多个(用空格隔开)样式类名</li>
+<li>.toggleClass(className,switch):一个布尔值，用于判断样式是否应该被添加或移除</li>
+<li>.toggleClass([switch]):一个用来判断样式类添加还是移除的布尔值</li>
+<li>.toggleClass(function(index,class,switch)[,switch]:用来返回在匹配的元素集合中的每个元素上上用来切换的样式类名的一个函数。接收元素的索引位置和元素旧的样式类作为参数</li>
+</ol>
+<h5 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h5><p>1.toggleClass是一个互斥的逻辑，也就是通过判断对应的元素上是否存在指定的Class名，如果有就删除，如果没有就增加<br>2.toggleClass会保留原有的Class名后新增，通过空格隔开</p>
+<h3 id="样式操作-css"><a href="#样式操作-css" class="headerlink" title="样式操作.css()"></a>样式操作.css()</h3><p>通过JavaScript获取dom元素上的style属性，我们可以动态的给元素赋予样式属性。在jQuery中我们要动态的修改style属性我们只要使用css()方法就可以实现了</p>
+<h5 id="css-方法：获取元素样式属性的计算值或者设置元素的CSS属性"><a href="#css-方法：获取元素样式属性的计算值或者设置元素的CSS属性" class="headerlink" title=".css() 方法：获取元素样式属性的计算值或者设置元素的CSS属性"></a>.css() 方法：获取元素样式属性的计算值或者设置元素的CSS属性</h5><h5 id="获取："><a href="#获取：" class="headerlink" title="获取："></a>获取：</h5><ol>
+<li>.css(propertyName):获取匹配元素集合中的第一个元素的样式属性的计算值</li>
+<li>.css(propertyNames)：传递一组数组，返回一个对象结果</li>
+</ol>
+<h5 id="设置："><a href="#设置：" class="headerlink" title="设置："></a>设置：</h5><ol>
+<li>.css(propertyName,value):设置CSS</li>
+<li>.css(propertyName,function): 可以传入一个回调函数，返回取到对应的值进行处理</li>
+<li>.css(properties):可以传一个对象，同时设置多个样式</li>
+</ol>
+<h5 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项:"></a>注意事项:</h5><p>1.浏览器属性获取方式不同，在获取某些值的时候都jQuery采用统一的处理，比如颜色采用RGB，尺寸采用px</p>
+<ol>
+<li>.css()方法支持驼峰写法与大小写混搭的写法，内部做了容错的处理</li>
+<li>当一个数只能被作为值(value)的时候，jQuery会将其转换为一个字符串，并添在字符串的结尾处添加px，例如.css(“width”,50)与.css(“width”,”50px”)是一样的效果</li>
+</ol>
+<h3 id="css-与-addClass-设置样式的区别"><a href="#css-与-addClass-设置样式的区别" class="headerlink" title=".css()与.addClass()设置样式的区别"></a>.css()与.addClass()设置样式的区别</h3><ul>
+<li>可维护性:</li>
+</ul>
+<p>.addClass()的本质是通过定义个class类的样式规则，给元素添加一个或多个类。css方法是通过JavaScript大量代码进行改变元素的样式</p>
+<p>通过.addClass()我们可以批量的给相同的元素设置统一规则，变动起来比较方便，可以统一修改删除。如果通过.css()方法就需要指定每一个元素是一一的修改，日后维护也要一一的修改，比较麻烦</p>
+<ul>
+<li>灵活性：</li>
+</ul>
+<p>通过.css()方式可以很容易动态的去改变一个样式的属性，不需要再去繁琐的定义个class类的规则。一般来说在不确定开始布局规则，通过动态生成的HTML代码结构中，都是通过.css()方法处理的</p>
+<ul>
+<li>样式值：</li>
+</ul>
+<p>.addClass()本质只是针对class的类的增加删除，不能获取到指定样式的属性的值，.css()可以获取到指定的样式值</p>
+<ul>
+<li>样式的优先级:</li>
+</ul>
+<p>css的样式是有优先级的，当外部样式，内部样式和内联样式 <em>同一样式规则</em> 同时应用于同一个元素的时候，优先级如下： </p>
+<p>外部样式&lt;内部样式&lt;内联样式</p>
+<ol>
+<li>.addClass()方法是通过增加class名的方式，那么这个样式是在外部文件或者内部样式中先定义好的，等到需要的时候再附加到元素上</li>
+<li>通过.css()方法处理的是内联样式，直接通过元素的style属性附加到元素上的</li>
+</ol>
+<p><span style="color:red">通过.css方法设置的样式属性优先级要高于.addClass方法</span></p>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h5><p><span style="color:red">addClass与.css方法各有利弊，一般是静态的结构，都确定了布局的规则，可以用addClass的方法，增加统一的类规则<br>如果是动态的HTML结构，在不确定规则，或者经常变化的情况下，一般多考虑.css()方式</span></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/03/18/jQuery基础-样式/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-浅谈Ajax" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
