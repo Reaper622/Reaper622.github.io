@@ -43,7 +43,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="img/curry.JPG" class="js-avatar">
+			<img src="" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">李 博文</a></h1>
@@ -155,6 +155,218 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-D3.js 学习之旅(一)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="D3-js-学习之旅-一"><a href="#D3-js-学习之旅-一" class="headerlink" title="D3.js 学习之旅(一)"></a>D3.js 学习之旅(一)</h1><h2 id="第一步制作画布"><a href="#第一步制作画布" class="headerlink" title="第一步制作画布"></a>第一步制作画布</h2><p>首先定义一个div id为container</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#container&#123;</span><br><span class="line">    background:#ddd;</span><br><span class="line">    width:500px;</span><br><span class="line">    height:250px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在js中的代码为：(与jQuery类似)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//加入并设置svg</span><br><span class="line">d3.select(&quot;#container&quot;)//选择画布</span><br><span class="line">.append(svg)//添加svg元素</span><br><span class="line">//设置高宽</span><br><span class="line">.attr(&quot;width&quot;,500;)</span><br><span class="line">.attr(&quot;height&quot;,250)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">d3.select(&quot;svg&quot;)</span><br><span class="line">.append(&quot;g&quot;)</span><br><span class="line">.attr(&quot;transform&quot;,&quot;translate(50,60)&quot;)//设置偏移量</span><br></pre></td></tr></table></figure>
+<h2 id="第二步绘制曲线"><a href="#第二步绘制曲线" class="headerlink" title="第二步绘制曲线"></a>第二步绘制曲线</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">定义绘制的数据</span><br><span class="line">var data = [1,3,5,7,8,4,3,7];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//定义绘制曲线的函数</span><br><span class="line">var line_generator = d3.svg.line()</span><br><span class="line">.x(function(d,i)&#123; return i;&#125;)</span><br><span class="line">//x坐标轴的值,d为数据值,i为索引值</span><br><span class="line">.y(function(d)&#123; return d;&#125;)</span><br><span class="line">//y坐标轴的值</span><br><span class="line"></span><br><span class="line">d3.select(&quot;g&quot;)</span><br><span class="line">.append(&quot;path&quot;)//曲线所为元素</span><br><span class="line">.attr(&quot;d&quot;,line_generator)//</span><br></pre></td></tr></table></figure>
+<h2 id="制作比例尺"><a href="#制作比例尺" class="headerlink" title="制作比例尺"></a>制作比例尺</h2><h5 id="此时可把宽度等设为全局变量"><a href="#此时可把宽度等设为全局变量" class="headerlink" title="此时可把宽度等设为全局变量"></a>此时可把宽度等设为全局变量</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var width = 500;</span><br><span class="line">var height = 250;</span><br><span class="line">var margin = &#123;left:50,top:30,right:20,bottom:20&#125;;</span><br><span class="line">var g_width = width - margin.left = margin.right;</span><br><span class="line">var g_height = height - margin.top - margin.bottom;</span><br></pre></td></tr></table></figure>
+<h5 id="定义x，y上的比例尺"><a href="#定义x，y上的比例尺" class="headerlink" title="定义x，y上的比例尺"></a>定义x，y上的比例尺</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var scale_x = d3.scale.linear()//线性缩放</span><br><span class="line">.domain([0,data.length - 1])//输入范围</span><br><span class="line">.range([0,g_width])//输出范围</span><br><span class="line">var scale_y =  d3.scale.linear()//线性缩放</span><br><span class="line">.domain([0,d3.max(data)])//输入范围</span><br><span class="line">.range([g_height,0])//输出范围</span><br></pre></td></tr></table></figure>
+<h5 id="此时再将line-generator函数改为"><a href="#此时再将line-generator函数改为" class="headerlink" title="此时再将line_generator函数改为"></a>此时再将line_generator函数改为</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.x(function(d,i)&#123; return scale_x(i);&#125;)</span><br><span class="line"></span><br><span class="line">.y(function(d)&#123; return scale_y(d);&#125;)</span><br></pre></td></tr></table></figure>
+<h6 id="显示后接下来可根据自己需要来调节样式"><a href="#显示后接下来可根据自己需要来调节样式" class="headerlink" title="显示后接下来可根据自己需要来调节样式"></a>显示后接下来可根据自己需要来调节样式</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    fill:none;//填充色</span><br><span class="line">    stroke:steelblue;//线条色</span><br><span class="line">    stroke-width:2//线条宽度</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="补充如何做成曲线"><a href="#补充如何做成曲线" class="headerlink" title="补充如何做成曲线"></a>补充如何做成曲线</h4><p>在line_generator 函数中加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.interpolate(&quot;cardinal&quot;)</span><br></pre></td></tr></table></figure></p>
+<h2 id="select-与-selectAll之区别"><a href="#select-与-selectAll之区别" class="headerlink" title="select 与 selectAll之区别"></a>select 与 selectAll之区别</h2><p>d3.selete是选择符合条件的第一个匹配元素</p>
+<p>d3.seleteAll是选择所有符合条件的元素</p>
+<h2 id="坐标轴的绘制"><a href="#坐标轴的绘制" class="headerlink" title="坐标轴的绘制"></a>坐标轴的绘制</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var x_axis = d3.svg.axis().scale(scale_x).orient(&quot;left&quot;);//生成坐标轴的函数,并配合比例尺,并且朝左</span><br><span class="line"></span><br><span class="line">var y_axis = d3.svg.axis().scale(scale_y);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">g.append(&quot;g&quot;)</span><br><span class="line">.call(x_axis)生成x轴</span><br><span class="line">.attr(&quot;transform&quot;,&quot;translate(0,&quot; + g_height +&quot;)&quot;)//使坐标轴显示在下部分</span><br><span class="line"></span><br><span class="line">g.append(&quot;g&quot;)</span><br><span class="line">.call(y_axis)//生成y轴</span><br><span class="line"></span><br><span class="line">//注意浏览器的坐标轴为从上往下增大，</span><br><span class="line">//不符合数学规律，此时就体现出一开始设定</span><br><span class="line">//比例尺范围时.range([g_height,0])的作用了</span><br></pre></td></tr></table></figure>
+<h5 id="在Y轴上显示文字元素"><a href="#在Y轴上显示文字元素" class="headerlink" title="在Y轴上显示文字元素"></a>在Y轴上显示文字元素</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">g.append(&quot;g&quot;)</span><br><span class="line">.call(y_axis)//生成y轴</span><br><span class="line">.append(&quot;text&quot;)</span><br><span class="line">.text(&quot;Price&quot;)</span><br><span class="line">.attr(&quot;transform&quot;,&quot;rorate(-90&quot;)//旋转90度实现沿着坐标轴</span><br><span class="line">.attr(&quot;text-anchor&quot;,&quot;end&quot;)//文字末尾与坐标轴末尾对其</span><br><span class="line">..attr(&quot;dy&quot;,&quot;1em&quot;)</span><br></pre></td></tr></table></figure>
+<p>接下来可通过查看坐标轴和刻度的class来改变样式，具体就不展示了</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/07/D3.js 学习之旅(一)/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-CSS-Float" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CSS-float"><a href="#CSS-float" class="headerlink" title="CSS float"></a>CSS float</h1><h3 id="float-设计初衷"><a href="#float-设计初衷" class="headerlink" title="float 设计初衷"></a>float 设计初衷</h3><p>用来实现文字环绕效果</p>
+<h3 id="包裹与破坏"><a href="#包裹与破坏" class="headerlink" title="包裹与破坏"></a>包裹与破坏</h3><h4 id="包裹"><a href="#包裹" class="headerlink" title="包裹:"></a>包裹:</h4><ol>
+<li>收缩</li>
+<li>坚挺</li>
+<li>隔绝(对外无影响)</li>
+</ol>
+<h4 id="破坏"><a href="#破坏" class="headerlink" title="破坏:"></a>破坏:</h4><p>父级元素高度塌陷</p>
+<h5 id="如果清除浮动-带来的影响"><a href="#如果清除浮动-带来的影响" class="headerlink" title="如果清除浮动(带来的影响)"></a>如果清除浮动(带来的影响)</h5><ol>
+<li>脚底插入clear:both;属性的盒子 //但外部仍有影响</li>
+<li>父元素BFC(IE8+)或者haslayout(IE6/IE7) //外部不会对内部有影响</li>
+</ol>
+<h5 id="float滥用"><a href="#float滥用" class="headerlink" title="float滥用"></a>float滥用</h5><ol>
+<li>元素block块状化</li>
+<li>破坏性造成的紧密排列特性(去空格化)</li>
+</ol>
+<h6 id="块妆化的危害"><a href="#块妆化的危害" class="headerlink" title="块妆化的危害:"></a>块妆化的危害:</h6><ul>
+<li>容错性差，易出问题。</li>
+<li>需要元素固定尺寸，很难重复使用。</li>
+<li>低版本IE兼容性低。</li>
+</ul>
+<h5 id="float与流体布局"><a href="#float与流体布局" class="headerlink" title="float与流体布局"></a>float与流体布局</h5><h6 id="实现文字单侧固定"><a href="#实现文字单侧固定" class="headerlink" title="实现文字单侧固定"></a>实现文字单侧固定</h6><h6 id="智能自适应布局"><a href="#智能自适应布局" class="headerlink" title="智能自适应布局"></a>智能自适应布局</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">float</span><br><span class="line">display:table-cell; IE8+</span><br><span class="line">display:inline-block; IE7</span><br></pre></td></tr></table></figure>
+<h4 id="float兼容性"><a href="#float兼容性" class="headerlink" title="float兼容性"></a>float兼容性</h4><h5 id="让IE7用户落泪的浮动问题"><a href="#让IE7用户落泪的浮动问题" class="headerlink" title="让IE7用户落泪的浮动问题"></a>让IE7用户落泪的浮动问题</h5><ul>
+<li>含clear的浮动元素包裹不正确的问题</li>
+<li>浮动元素倒数2个莫名垂直间距问题</li>
+<li>浮动元素最后一个字符重复问题</li>
+<li>浮动元素楼梯排列问题</li>
+<li>浮动元素和文本不在同一列的问题</li>
+</ul>
+<h2 id="使用Float需谨慎！"><a href="#使用Float需谨慎！" class="headerlink" title="使用Float需谨慎！"></a>使用Float需谨慎！</h2>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/01/CSS-Float/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-CSS-Float/CSS-Float" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CSS-float"><a href="#CSS-float" class="headerlink" title="CSS float"></a>CSS float</h1><h3 id="float-设计初衷"><a href="#float-设计初衷" class="headerlink" title="float 设计初衷"></a>float 设计初衷</h3><p>用来实现文字环绕效果</p>
+<h3 id="包裹与破坏"><a href="#包裹与破坏" class="headerlink" title="包裹与破坏"></a>包裹与破坏</h3><h4 id="包裹"><a href="#包裹" class="headerlink" title="包裹:"></a>包裹:</h4><ol>
+<li>收缩</li>
+<li>坚挺</li>
+<li>隔绝(对外无影响)</li>
+</ol>
+<h4 id="破坏"><a href="#破坏" class="headerlink" title="破坏:"></a>破坏:</h4><p>父级元素高度塌陷</p>
+<h5 id="如果清除浮动-带来的影响"><a href="#如果清除浮动-带来的影响" class="headerlink" title="如果清除浮动(带来的影响)"></a>如果清除浮动(带来的影响)</h5><ol>
+<li>脚底插入clear:both;属性的盒子 //但外部仍有影响</li>
+<li>父元素BFC(IE8+)或者haslayout(IE6/IE7) //外部不会对内部有影响</li>
+</ol>
+<h5 id="float滥用"><a href="#float滥用" class="headerlink" title="float滥用"></a>float滥用</h5><ol>
+<li>元素block块状化</li>
+<li>破坏性造成的紧密排列特性(去空格化)</li>
+</ol>
+<h6 id="块妆化的危害"><a href="#块妆化的危害" class="headerlink" title="块妆化的危害:"></a>块妆化的危害:</h6><ul>
+<li>容错性差，易出问题。</li>
+<li>需要元素固定尺寸，很难重复使用。</li>
+<li>低版本IE兼容性低。</li>
+</ul>
+<h5 id="float与流体布局"><a href="#float与流体布局" class="headerlink" title="float与流体布局"></a>float与流体布局</h5><h6 id="实现文字单侧固定"><a href="#实现文字单侧固定" class="headerlink" title="实现文字单侧固定"></a>实现文字单侧固定</h6><h6 id="智能自适应布局"><a href="#智能自适应布局" class="headerlink" title="智能自适应布局"></a>智能自适应布局</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">float</span><br><span class="line">display:table-cell; IE8+</span><br><span class="line">display:inline-block; IE7</span><br></pre></td></tr></table></figure>
+<h4 id="float兼容性"><a href="#float兼容性" class="headerlink" title="float兼容性"></a>float兼容性</h4><h5 id="让IE7用户落泪的浮动问题"><a href="#让IE7用户落泪的浮动问题" class="headerlink" title="让IE7用户落泪的浮动问题"></a>让IE7用户落泪的浮动问题</h5><ul>
+<li>含clear的浮动元素包裹不正确的问题</li>
+<li>浮动元素倒数2个莫名垂直间距问题</li>
+<li>浮动元素最后一个字符重复问题</li>
+<li>浮动元素楼梯排列问题</li>
+<li>浮动元素和文本不在同一列的问题</li>
+</ul>
+<h2 id="使用Float需谨慎！"><a href="#使用Float需谨慎！" class="headerlink" title="使用Float需谨慎！"></a>使用Float需谨慎！</h2>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/01/CSS-Float/CSS-Float/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-jQuery基础-样式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">

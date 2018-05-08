@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://Reaper622.github.io">
-  <title>Archives: 2018 | 李博文的博客</title>
+  <title>李博文的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="CSS floatfloat 设计初衷用来实现文字环绕效果 包裹与破坏包裹: 收缩 坚挺 隔绝(对外无影响)  破坏:父级元素高度塌陷 如果清除浮动(带来的影响) 脚底插入clear:both;属性的盒子 //但外部仍有影响 父元素BFC(IE8+)或者haslayout(IE6/IE7) //外部不会对内部有影响  float滥用 元素block块状化 破坏性造成的紧密排列特性(去空格化)  块">
+<meta property="og:type" content="article">
 <meta property="og:title" content="李博文的博客">
-<meta property="og:url" content="https://Reaper622.github.io/archives/2018/index.html">
+<meta property="og:url" content="https://Reaper622.github.io/2018/04/01/CSS-Float/CSS-Float/index.html">
 <meta property="og:site_name" content="李博文的博客">
+<meta property="og:description" content="CSS floatfloat 设计初衷用来实现文字环绕效果 包裹与破坏包裹: 收缩 坚挺 隔绝(对外无影响)  破坏:父级元素高度塌陷 如果清除浮动(带来的影响) 脚底插入clear:both;属性的盒子 //但外部仍有影响 父元素BFC(IE8+)或者haslayout(IE6/IE7) //外部不会对内部有影响  float滥用 元素block块状化 破坏性造成的紧密排列特性(去空格化)  块">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-01T10:30:26.698Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="李博文的博客">
+<meta name="twitter:description" content="CSS floatfloat 设计初衷用来实现文字环绕效果 包裹与破坏包裹: 收缩 坚挺 隔绝(对外无影响)  破坏:父级元素高度塌陷 如果清除浮动(带来的影响) 脚底插入clear:both;属性的盒子 //但外部仍有影响 父元素BFC(IE8+)或者haslayout(IE6/IE7) //外部不会对内部有影响  float滥用 元素block块状化 破坏性造成的紧密排列特性(去空格化)  块">
   
     <link rel="alternative" href="/atom.xml" title="李博文的博客" type="application/atom+xml">
   
@@ -154,127 +158,177 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-CSS-Float/CSS-Float" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CSS-float"><a href="#CSS-float" class="headerlink" title="CSS float"></a>CSS float</h1><h3 id="float-设计初衷"><a href="#float-设计初衷" class="headerlink" title="float 设计初衷"></a>float 设计初衷</h3><p>用来实现文字环绕效果</p>
+<h3 id="包裹与破坏"><a href="#包裹与破坏" class="headerlink" title="包裹与破坏"></a>包裹与破坏</h3><h4 id="包裹"><a href="#包裹" class="headerlink" title="包裹:"></a>包裹:</h4><ol>
+<li>收缩</li>
+<li>坚挺</li>
+<li>隔绝(对外无影响)</li>
+</ol>
+<h4 id="破坏"><a href="#破坏" class="headerlink" title="破坏:"></a>破坏:</h4><p>父级元素高度塌陷</p>
+<h5 id="如果清除浮动-带来的影响"><a href="#如果清除浮动-带来的影响" class="headerlink" title="如果清除浮动(带来的影响)"></a>如果清除浮动(带来的影响)</h5><ol>
+<li>脚底插入clear:both;属性的盒子 //但外部仍有影响</li>
+<li>父元素BFC(IE8+)或者haslayout(IE6/IE7) //外部不会对内部有影响</li>
+</ol>
+<h5 id="float滥用"><a href="#float滥用" class="headerlink" title="float滥用"></a>float滥用</h5><ol>
+<li>元素block块状化</li>
+<li>破坏性造成的紧密排列特性(去空格化)</li>
+</ol>
+<h6 id="块妆化的危害"><a href="#块妆化的危害" class="headerlink" title="块妆化的危害:"></a>块妆化的危害:</h6><ul>
+<li>容错性差，易出问题。</li>
+<li>需要元素固定尺寸，很难重复使用。</li>
+<li>低版本IE兼容性低。</li>
+</ul>
+<h5 id="float与流体布局"><a href="#float与流体布局" class="headerlink" title="float与流体布局"></a>float与流体布局</h5><h6 id="实现文字单侧固定"><a href="#实现文字单侧固定" class="headerlink" title="实现文字单侧固定"></a>实现文字单侧固定</h6><h6 id="智能自适应布局"><a href="#智能自适应布局" class="headerlink" title="智能自适应布局"></a>智能自适应布局</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">float</span><br><span class="line">display:table-cell; IE8+</span><br><span class="line">display:inline-block; IE7</span><br></pre></td></tr></table></figure>
+<h4 id="float兼容性"><a href="#float兼容性" class="headerlink" title="float兼容性"></a>float兼容性</h4><h5 id="让IE7用户落泪的浮动问题"><a href="#让IE7用户落泪的浮动问题" class="headerlink" title="让IE7用户落泪的浮动问题"></a>让IE7用户落泪的浮动问题</h5><ul>
+<li>含clear的浮动元素包裹不正确的问题</li>
+<li>浮动元素倒数2个莫名垂直间距问题</li>
+<li>浮动元素最后一个字符重复问题</li>
+<li>浮动元素楼梯排列问题</li>
+<li>浮动元素和文本不在同一列的问题</li>
+</ul>
+<h2 id="使用Float需谨慎！"><a href="#使用Float需谨慎！" class="headerlink" title="使用Float需谨慎！"></a>使用Float需谨慎！</h2>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>感谢你能让我做的更好<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/07/D3.js 学习之旅(一)/" class="archive-article-date">
-  	<time datetime="2018-05-07T13:45:56.571Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-07</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://Reaper622.github.io/2018/04/01/CSS-Float/CSS-Float/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/01/CSS-Float/" class="archive-article-date">
-  	<time datetime="2018-04-01T11:49:48.541Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-01</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/01/CSS-Float/CSS-Float/" class="archive-article-date">
-  	<time datetime="2018-04-01T11:20:02.510Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-01</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2018/04/01/CSS-Float/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/03/18/jQuery基础-样式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/18/jQuery基础-样式/" class="archive-article-date">
-  	<time datetime="2018-03-18T12:07:48.481Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-18</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/15/浅谈Ajax/" class="archive-article-date">
-  	<time datetime="2018-03-15T12:45:22.131Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-15</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -297,8 +351,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
